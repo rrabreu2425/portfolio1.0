@@ -10,7 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SkillsRouteImport } from './routes/skills'
+import { Route as RegisterRouteImport } from './routes/register'
 import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as LogingRouteImport } from './routes/loging'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SkillsRoute = SkillsRouteImport.update({
@@ -18,9 +20,19 @@ const SkillsRoute = SkillsRouteImport.update({
   path: '/skills',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjectsRoute = ProjectsRouteImport.update({
   id: '/projects',
   path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LogingRoute = LogingRouteImport.update({
+  id: '/loging',
+  path: '/loging',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -31,31 +43,39 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/loging': typeof LogingRoute
   '/projects': typeof ProjectsRoute
+  '/register': typeof RegisterRoute
   '/skills': typeof SkillsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/loging': typeof LogingRoute
   '/projects': typeof ProjectsRoute
+  '/register': typeof RegisterRoute
   '/skills': typeof SkillsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/loging': typeof LogingRoute
   '/projects': typeof ProjectsRoute
+  '/register': typeof RegisterRoute
   '/skills': typeof SkillsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/projects' | '/skills'
+  fullPaths: '/' | '/loging' | '/projects' | '/register' | '/skills'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/projects' | '/skills'
-  id: '__root__' | '/' | '/projects' | '/skills'
+  to: '/' | '/loging' | '/projects' | '/register' | '/skills'
+  id: '__root__' | '/' | '/loging' | '/projects' | '/register' | '/skills'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LogingRoute: typeof LogingRoute
   ProjectsRoute: typeof ProjectsRoute
+  RegisterRoute: typeof RegisterRoute
   SkillsRoute: typeof SkillsRoute
 }
 
@@ -68,11 +88,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SkillsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projects': {
       id: '/projects'
       path: '/projects'
       fullPath: '/projects'
       preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/loging': {
+      id: '/loging'
+      path: '/loging'
+      fullPath: '/loging'
+      preLoaderRoute: typeof LogingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -87,7 +121,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LogingRoute: LogingRoute,
   ProjectsRoute: ProjectsRoute,
+  RegisterRoute: RegisterRoute,
   SkillsRoute: SkillsRoute,
 }
 export const routeTree = rootRouteImport
