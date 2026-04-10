@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills</title>
+    <style>
+        :root {
+            --bg: #f4f7fb;
+            --surface: #ffffff;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --line: #d1d5db;
+            --accent: #0f766e;
+            --accent-soft: #ccfbf1;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background: radial-gradient(circle at top right, #dbeafe, var(--bg) 45%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .header {
+            margin-bottom: 1.5rem;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .header p {
+            margin-top: 0.5rem;
+            color: var(--muted);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 1rem;
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .badge {
+            font-size: 0.75rem;
+            border-radius: 999px;
+            padding: 0.2rem 0.6rem;
+            background: var(--accent-soft);
+            color: #115e59;
+            white-space: nowrap;
+        }
+
+        .meta {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .icon {
+            width: 38px;
+            height: 38px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            margin-top: 0.8rem;
+        }
+
+        .empty {
+            background: var(--surface);
+            border: 1px dashed var(--line);
+            border-radius: 14px;
+            padding: 1.25rem;
+            text-align: center;
+            color: var(--muted);
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <header class="header">
+            <h1>My Skills</h1>
+            <p>Total skills: {{ skills|length }}</p>
+        </header>
+
+        {% if skills %}
+        <section class="grid">
+            {% for skill in skills %}
+            <article class="card">
+                <div class="card-header">
+                    <li><a href="{% url 'detail' skill.id %}">
+                            <h2 class="name">{{ skill.name }}</h2>
+                        </a>
+                </div>
+                </li>
+                {% if skill.is_featured %}
+                <span class="badge">Featured</span>
+                {% endif %}
+                </div>
+
+                <p class="meta"><strong>Level:</strong> {{ skill.get_level_display }}</p>
+                <p class="meta"><strong>Category:</strong> {{ skill.category.name }}</p>
+                <p class="meta"><strong>Order:</strong> {{ skill.order }}</p>
+
+                {% if skill.icon %}
+                <img class="icon" src="{{ skill.icon.url }}" alt="{{ skill.name }} icon">
+                {% endif %}
+            </article>
+            {% endfor %}
+        </section>
+        {% else %}
+        <p class="empty">No skills found yet.</p>
+        {% endif %}
+    </main>
+</body>
+
+</html>

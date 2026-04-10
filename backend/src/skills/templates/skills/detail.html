@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ skill.name }} | Skill Detail</title>
+    <style>
+        :root {
+            --bg: #f4f7fb;
+            --surface: #ffffff;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --line: #d1d5db;
+            --accent: #0f766e;
+            --accent-soft: #ccfbf1;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background: radial-gradient(circle at top right, #dbeafe, var(--bg) 45%);
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 1rem;
+        }
+
+        .card {
+            width: min(680px, 100%);
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .badge {
+            font-size: 0.8rem;
+            border-radius: 999px;
+            padding: 0.25rem 0.7rem;
+            background: var(--accent-soft);
+            color: #115e59;
+        }
+
+        h1 {
+            margin: 0.25rem 0 0.75rem;
+            font-size: 2rem;
+        }
+
+        .meta {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .meta strong {
+            color: var(--text);
+        }
+
+        .icon-wrap {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--line);
+        }
+
+        .icon {
+            width: 84px;
+            height: 84px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid var(--line);
+        }
+    </style>
+</head>
+
+<body>
+    <article class="card">
+        <div class="topbar">
+            <a class="back-link" href="{% url 'index' %}">&#8592; Back to skills</a>
+            {% if skill.is_featured %}
+            <span class="badge">Featured</span>
+            {% endif %}
+        </div>
+
+        <h1>{{ skill.name }}</h1>
+
+        <p class="meta"><strong>ID:</strong> {{ skill.id }}</p>
+        <p class="meta"><strong>Level:</strong> {{ skill.get_level_display }}</p>
+        <p class="meta"><strong>Category:</strong> {{ skill.category.name }}</p>
+        <p class="meta"><strong>Order:</strong> {{ skill.order }}</p>
+        <p class="meta"><strong>Created:</strong> {{ skill.created_at }}</p>
+        <p class="meta"><strong>Updated:</strong> {{ skill.updated_at }}</p>
+
+        {% if skill.icon %}
+        <div class="icon-wrap">
+            <img class="icon" src="{{ skill.icon.url }}" alt="{{ skill.name }} icon">
+        </div>
+        {% endif %}
+    </article>
+</body>
+
+</html>
