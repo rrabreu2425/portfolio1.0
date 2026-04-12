@@ -35,8 +35,8 @@ export class APIClientService{
     if(token){
         config.headers.Authorization = `Token ${token}`;
     }
-    else{
-        config.headers.Authorization = ''
+    else if (config.headers.Authorization) {
+        delete config.headers.Authorization;
     }
     return config
       },

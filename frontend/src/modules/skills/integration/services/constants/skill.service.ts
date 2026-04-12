@@ -10,7 +10,7 @@ export class SkillService implements ISkillService{
         @inject(CORE_DEPENDENCY_INJECTION_TYPES.apiClient) private readonly apiClient: APIClientService
     ){}
     async getSkills(): Promise<PaginatedSkillResponse> {
-        const response = await this.apiClient.get<PaginatedSkillResponse>('/skills');
+        const response = await this.apiClient.get<PaginatedSkillResponse>('skills/');
         return response.data;
     }
 }

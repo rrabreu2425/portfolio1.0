@@ -1,7 +1,8 @@
 import { Navbar } from '@/components/bundled/Navbar'
-import { Outlet, createRootRoute } from '@tanstack/react-router'
+import type { AuthContext } from '@/core/auth/auth-context'
+import { Outlet, createRootRouteWithContext } from '@tanstack/react-router'
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<{ auth: AuthContext }>()({
   component: ()=><> 
   <Navbar />
   <Outlet />
