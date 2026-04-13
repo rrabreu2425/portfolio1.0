@@ -1,4 +1,5 @@
-import { createFileRoute, redirect } from '@tanstack/react-router'
+import { Projects } from '@/modules/projects/presentation/pages/projects';
+import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/projects')({
   beforeLoad: ({ context, location }) => {
@@ -11,5 +12,5 @@ export const Route = createFileRoute('/projects')({
       })
     }
   },
-  component: () => <div>Hello "/projects"!</div>,
+  component: () => <Projects />,
 })
