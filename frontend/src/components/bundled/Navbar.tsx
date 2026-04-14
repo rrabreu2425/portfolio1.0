@@ -41,6 +41,11 @@ export function Navbar() {
                 <Link to="/projects">Projects</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild>
+                <Link to="/contact">Contact</Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
           </>
         ) : null}
         {isAuthenticated ? (

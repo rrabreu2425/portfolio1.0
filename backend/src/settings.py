@@ -29,6 +29,14 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+##ztfs gqlx zhoo cghc
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'rrabreu2425@gmail.com'
+EMAIL_HOST_PASSWORD = 'ztfsgqlxzhoocghc'
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'src.contact.backends.email_backend.EmailBackend'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -129,6 +137,7 @@ STATIC_URL = 'static/'
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
         "knox.auth.TokenAuthentication",
     ],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",

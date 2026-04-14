@@ -7,7 +7,7 @@ from .models.category import Category
 @admin.register(Skill)
 class SkillAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'level', 'category', 'is_featured', 'order')
-    search_fields = ('name', 'category__name')
+    search_fields = ('name', 'category_name')
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
