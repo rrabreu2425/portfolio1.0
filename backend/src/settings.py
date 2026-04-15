@@ -78,6 +78,7 @@ INSTALLED_APPS = [
     'src.core.apps.CoreConfig',
     'src.contact.apps.ContactConfig',
     'src.users.apps.UsersConfig',
+    'src.github_integration.apps.GithubIntegrationConfig',
     'knox'    
 ]
 
@@ -163,7 +164,6 @@ STATIC_URL = 'static/'
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.SessionAuthentication",
         "knox.auth.TokenAuthentication",
     ],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
