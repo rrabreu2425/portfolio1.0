@@ -46,4 +46,5 @@ urlpatterns = [
     path('', include('src.users.urls')),
     path('', include('src.projects.urls')),
     path('', include('src.contact.urls')),
+    path('', include('src.github_integration.urls')),
 ]
