@@ -1,4 +1,4 @@
-import { Register } from '@/modules/auth/presentation/components/register'
+import { RegisterPage } from '@/modules/auth/presentation/pages/register-page'
 import { createFileRoute, redirect } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/register')({
@@ -7,5 +7,5 @@ export const Route = createFileRoute('/register')({
       throw redirect({ to: '/' })
     }
   },
-  component: ()=> <Register />,
+  component: () => <RegisterPage />,
 })

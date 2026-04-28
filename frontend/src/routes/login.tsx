@@ -1,4 +1,4 @@
-import { Login } from '@/modules/auth/presentation/components/login';
+import { LoginPage } from '@/modules/auth/presentation/pages/login-page';
 import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/login')({
@@ -14,6 +14,6 @@ export const Route = createFileRoute('/login')({
       throw redirect({ to: '/' })
     }
   },
-  component: () => <Login />,
+  component: () => <LoginPage />,
 })
 
